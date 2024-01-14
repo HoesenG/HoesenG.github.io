@@ -85,10 +85,10 @@ author:
   bio              : "Ph.D. Student at Northwestern University"
   location         : "Chicago, Illinois"
   employer         :
-  pubmed           : "https://"
-  googlescholar    : "http://"
+  pubmed           :
+  googlescholar    : 
   email            :
-  researchgate     :  # example: "https://"
+  researchgate     :
   uri              :
   bitbucket        :
   codepen          :
@@ -96,7 +96,7 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : ""
+  github           :
   google_plus      :
   keybase          :
   instagram        :
