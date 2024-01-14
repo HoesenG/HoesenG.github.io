@@ -11,13 +11,14 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+
+* Ph.D in Computer Engineering, Northwestern University, 2028 (expected)
+* M.S. in Electrical Engineering, Northwestern University, 2023
+* B.E. in Electronic Information Engineering, University of Shanghai for Sci & Tech, 2022
 
 Work experience
 ======
-* Summer 2015: Research Assistant
+*  Research Assistant
   * Github University
   * Duties included: Tagging issues
   * Supervisor: Professor Git
