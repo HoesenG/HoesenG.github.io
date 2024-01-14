@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Houxuan Guo"
+title: ""
 excerpt: "About me"
 author_profile: true
 redirect_from: 
@@ -8,4 +8,4 @@ redirect_from:
   - /about.html
 ---
 
-  Houxuan Guo (Alan) is currently a Ph.D. student at Northwestern University in Computer Engineering.
+  Hello! I am a Ph.D. student at Northwestern University in Computer Engineering. I am also collaborating with Fermi National Acceleration Lab in some VLSI projects like LHCs.
