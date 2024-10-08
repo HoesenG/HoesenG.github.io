@@ -12,21 +12,18 @@ redirect_from:
 Education
 ======
 
-* Ph.D in Computer Engineering, Northwestern University, 2028 (expected)
+* Ph.D. in Computer Engineering, Northwestern University, Current
 * M.S. in Electrical Engineering, Northwestern University, 2023
 * B.E. in Electronic Information Engineering, University of Shanghai for Sci & Tech, 2022
 
-Work experience
+Experience
 ======
 * Asic Design Engineer
-  * Fermi National Accelerator Laboratory
-  * Duties included: 
-  * Supervisor: Adam Quinn
+  * Fermilab
 
 * Research Assistant
   * Northwestern University
-  * Duties included: 
-  * Supervisor: Seda Ogrenci
   
 Skills
 ======
+* ASIC Design & Test, Verilog, Python, Embedded Systems, Machine Learning (TensorFlow)
