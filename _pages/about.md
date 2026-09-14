@@ -17,8 +17,7 @@ I focus on building resource-efficient and fault-resilient neural network accele
 ### Conference Papers
 * **Toward Reconfigurable In-Pixel Computing: A Fault-Tolerant Design Flow for Machine Learning Accelerators**  
   **Houxuan Guo**, M. B. Valentín, X. He, and S. Ogrenci  
-  *2025 IEEE 33rd Annual International Symposium on Field-Programmable Custom Computing Machines (FCCM)*, 2025  
-  [Paper](https://doi.org/10.1109/FCCM62733.2025.00014) | [IEEE Xplore](https://doi.org/10.1109/FCCM62733.2025.00014)
+  *2025 IEEE 33rd Annual International Symposium on Field-Programmable Custom Computing Machines (FCCM)*, 2025 | [IEEE Xplore](https://doi.org/10.1109/FCCM62733.2025.00014)
 
 * **ENABOL: Enabling Stable On-Chip Learning via Adaptive Lipschitz Budgeting**  
   M. B. Valentín, **Houxuan Guo**, R. Forelli, E. Gindlesperger, and S. Ogrenci  
