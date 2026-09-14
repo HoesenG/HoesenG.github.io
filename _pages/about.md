@@ -79,4 +79,3 @@ I focus on building resource-efficient and fault-resilient neural network accele
 * **Hardware Architecture:** Edge AI Accelerators, FPGA (Vivado, Vitis), High-Level Synthesis (HLS), Fixed-Point Arithmetic, ASIC/SoC Co-Design, UVM, ESP SoC Platform
 * **EDA Tools:** Cadence (Genus, Innovus, Xcelium, Virtuoso), Synopsys (Design Compiler, VCS), Siemens Questa
 
-[//]:My resume is here: [Resume](../assets/Resume.pdf)
