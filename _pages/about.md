@@ -8,7 +8,6 @@ redirect_from:
   - /about.html
 ---
 
-Hello! I am a PhD student at Northwestern University in Computer Engineering. I am interested in hardware based machine learning. I am also collaborating with Fermilab on some HEP ASIC/FPGA projects.
-My current research focus is on fault-related bit errors on ASICs.
+I'm a PhD student in Computer Engineering at Northwestern University. My researches focus in fault-tolerance hardware design, reconfigurable architectures, and on-chip training frameworks.
   
-My resume is here: [Resume](../assets/Resume.pdf)
+[//]:My resume is here: [Resume](../assets/Resume.pdf)
