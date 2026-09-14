@@ -39,6 +39,7 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+// auto dark mode
 @media (prefers-color-scheme: dark) {
   html {
     filter: invert(1) hue-rotate(180deg);
@@ -49,30 +50,25 @@
     filter: invert(1) hue-rotate(180deg);
   }
 }
-.author__avatar img {
-  width: 100% !important;
-  max-width: 100px !important;
-  aspect-ratio: 1 / 1 !important;    /* 强制锁定 1:1 比例 */
-  object-fit: cover !important;       /* 自动智能居中裁剪，不变形 */
-  border-radius: 50% !important;     /* 形成完美正圆 */
-  border: none !important;            /* 彻底去除外面那圈细框 */
-  padding: 0 !important;             /* 去除细框留白内边距 */
-  box-shadow: none !important;        /* 去除多余阴影 */
-}
-.sidebar .author__avatar {
-  width: auto !important;
+
+.author__avatar {
   text-align: center !important;
 }
 
-.sidebar .author__avatar img {
-  width: 85px !important;        /* 强制指定宽度为 85px (想更小可改 75px) */
-  height: 85px !important;       /* 等比高度 */
-  max-width: none !important;
-  display: inline-block !important;
-  border-radius: 50% !important; /* 保持圆形 */
+.author__avatar img {
+  width: 125px !important;  
+  height: 125px !important;         
+  object-fit: cover !important;      
+  border-radius: 50% !important;     
+  padding: 6px !important;           
+  border: 1px solid #555 !important;   
+  box-sizing: border-box !important;   
   margin: 0 auto !important;
+  display: inline-block !important;
 }
 
+
+// separation line visible
 .page__content h2 {
   border-bottom: 2px solid #666 !important; 
   padding-bottom: 0.2em !important;
