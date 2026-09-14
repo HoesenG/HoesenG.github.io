@@ -13,7 +13,6 @@ I'm a PhD candidate in Computer Engineering at Northwestern University. My resea
 
 I focus on building resource-efficient and fault-resilient neural network accelerators and compilation frameworks. My work spans automated ML compilation toolchains (extending `hls4ml`), fixed-point on-device backpropagation, post-silicon ASIC bring-up, and hardware reliability for edge computing platforms.
 
----
 
 ## Publications
 
@@ -32,7 +31,6 @@ I focus on building resource-efficient and fault-resilient neural network accele
   M. B. Valentín, **Houxuan Guo**, X. He, and S. Ogrenci  
   *IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)*, 2026 *(Under Review)*
 
----
 
 ## Research Projects
 
@@ -53,7 +51,6 @@ I focus on building resource-efficient and fault-resilient neural network accele
 * Implemented a pipelined Sobel edge-detection engine with grayscale conversion and an asynchronous FIFO-backed UDP packet parser for real-time PCAP multimedia streaming.
 * Built a modular UVM verification environment from scratch with constrained-random stimulus and functional coverage monitors, achieving 100% functional and code coverage.
 
----
 
 ## Experience
 
@@ -64,7 +61,6 @@ I focus on building resource-efficient and fault-resilient neural network accele
 * **ML Compiler & Framework Integration:** Integrated `hls4ml` neural network compiler with the ESP SoC platform to automate mapping and fixed-point quantization of PyTorch/ONNX models into custom hardware accelerators.
 * **High-Throughput Data Interface:** Built streaming data verification testbenches for photonic mixed-signal blocks, optimizing data conversion throughput and signal integrity.
 
----
 
 ## Education
 
@@ -76,9 +72,7 @@ I focus on building resource-efficient and fault-resilient neural network accele
 * **University of Shanghai for Science and Technology**, Shanghai, China  
   B.E. in Electrical Engineering *(Sep. 2018 -- Jun. 2022)*
 
----
-
-## Technical Skills
+## Skills
 
 * **Machine Learning & Systems:** PyTorch, ONNX, Quantization-Aware Training (QAT), Pruning, On-Device Learning, `hls4ml`, Keras/TensorFlow, Model Compression
 * **Languages & Scripting:** Python (NumPy, SciPy), C/C++, SystemVerilog, Verilog, CUDA, MATLAB, Bash, Tcl, Git, Linux
