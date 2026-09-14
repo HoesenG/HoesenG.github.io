@@ -28,7 +28,7 @@ I focus on building resource-efficient and fault-resilient neural network accele
   M. B. Valentín, **Houxuan Guo**, X. He, and S. Ogrenci  
   *IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)*, 2026 *(Under Review)*
 
-
+<!--
 ## Researches
 
 ### ENABOL: On-Device ML Training & Backpropagation Framework
@@ -47,7 +47,7 @@ I focus on building resource-efficient and fault-resilient neural network accele
 *Feb. 2024 -- Mar. 2024*
 * Implemented a pipelined Sobel edge-detection engine with grayscale conversion and an asynchronous FIFO-backed UDP packet parser for real-time PCAP multimedia streaming.
 * Built a modular UVM verification environment from scratch with constrained-random stimulus and functional coverage monitors, achieving 100% functional and code coverage.
-
+-->
 
 ## Experience
 
@@ -61,13 +61,12 @@ I focus on building resource-efficient and fault-resilient neural network accele
 
 ## Education
 
-* **Northwestern University**, Evanston, IL  
-  Ph.D. Candidate in Computer Engineering *(Jan. 2024 -- Present)*  
-  *Focus:* Efficient & Fault-Tolerant Edge ML Systems, On-Device Training, Hardware-Algorithm Co-Design
-* **Northwestern University**, Evanston, IL  
-  M.S. in Electrical Engineering *(Sep. 2022 -- Dec. 2023)*
-* **University of Shanghai for Science and Technology**, Shanghai, China  
-  B.E. in Electrical Engineering *(Sep. 2018 -- Jun. 2022)*
+* **Northwestern University**
+  Ph.D. Candidate in Computer Engineering *(Present)*  
+* **Northwestern University**
+  M.S. in Electrical Engineering *(2023)*
+* **University of Shanghai for Science and Technology**
+  B.E. in Electrical Engineering *(2022)*
 
 ## Skills
 
