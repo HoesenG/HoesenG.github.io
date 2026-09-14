@@ -39,3 +39,13 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+@media (prefers-color-scheme: dark) {
+  html {
+    filter: invert(1) hue-rotate(180deg);
+    background: #fff;
+  }
+
+  img, picture, video, .author__avatar img {
+    filter: invert(1) hue-rotate(180deg);
+  }
+}
