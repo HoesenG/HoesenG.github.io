@@ -14,7 +14,7 @@ I focus on building resource-efficient and fault-resilient neural network accele
 
 ## Publications
 
-### Conference Papers
+### Conferences
 * **Toward Reconfigurable In-Pixel Computing: A Fault-Tolerant Design Flow for Machine Learning Accelerators**  
   **Houxuan Guo**, M. B. Valentín, X. He, and S. Ogrenci  
   *2025 IEEE 33rd Annual International Symposium on Field-Programmable Custom Computing Machines (FCCM)*, 2025 | [IEEE Xplore](https://doi.org/10.1109/FCCM62733.2025.00014)
@@ -23,13 +23,13 @@ I focus on building resource-efficient and fault-resilient neural network accele
   M. B. Valentín, **Houxuan Guo**, R. Forelli, E. Gindlesperger, and S. Ogrenci  
   *Design, Automation and Test in Europe (DATE)*, 2027 *(Under Review)*
 
-### Journal Papers
+### Journals
 * **NetSuRF: A Resource-Aware Fault-Tolerant Design Flow for Machine Learning on Edge Devices**  
   M. B. Valentín, **Houxuan Guo**, X. He, and S. Ogrenci  
   *IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)*, 2026 *(Under Review)*
 
 
-## Research Projects
+## Researches
 
 ### ENABOL: On-Device ML Training & Backpropagation Framework
 *Jun. 2024 -- Present*
