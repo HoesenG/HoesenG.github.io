@@ -59,11 +59,27 @@
   padding: 0 !important;             /* 去除细框留白内边距 */
   box-shadow: none !important;        /* 去除多余阴影 */
 }
+.sidebar .author__avatar {
+  width: auto !important;
+  text-align: center !important;
+}
+
+.sidebar .author__avatar img {
+  width: 85px !important;        /* 强制指定宽度为 85px (想更小可改 75px) */
+  height: 85px !important;       /* 等比高度 */
+  max-width: none !important;
+  display: inline-block !important;
+  border-radius: 50% !important; /* 保持圆形 */
+  margin: 0 auto !important;
+}
+
 .page__content h2 {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.25) !important;
-  padding-bottom: 0.3em;
+  border-bottom: 2px solid #666 !important; 
+  padding-bottom: 0.2em !important;
 }
 
 hr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border: 0 !important;
+  border-bottom: 1px solid #666 !important;
 }
+
