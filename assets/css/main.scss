@@ -40,19 +40,12 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 @media (prefers-color-scheme: dark) {
-  html, body {
-    background-color: #000 !important;
-  }
-  
   html {
-    -webkit-filter: invert(1) hue-rotate(180deg);
     filter: invert(1) hue-rotate(180deg);
-    min-height: 100%;
+    background: #fff;
   }
-  
-  /* 图片防反色 */
+
   img, picture, video, .author__avatar img {
-    -webkit-filter: invert(1) hue-rotate(180deg);
     filter: invert(1) hue-rotate(180deg);
   }
 }
