@@ -1,14 +1,12 @@
 ---
 permalink: /
-title: ""
+title: "About Me"
 excerpt: "About me"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
-
-## About Me
 I'm a PhD candidate in Computer Engineering at Northwestern University. My researches focus in fault-tolerance hardware design, reconfigurable architectures, on-device learning, and hardware-algorithm co-design.
 
 I focus on building resource-efficient and fault-resilient neural network accelerators and compilation frameworks. My work spans automated ML compilation toolchains (extending `hls4ml`), fixed-point on-device backpropagation, post-silicon ASIC bring-up, and hardware reliability for edge computing platforms.
