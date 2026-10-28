@@ -1,0 +1,28 @@
+{% comment %}
+  Renders entries from _data/publications.yml.
+  Params: type (optional, "conference" | "journal"), selected (optional, true)
+{% endcomment %}
+{% assign pubs = site.data.publications %}
+{% if include.type %}{% assign pubs = pubs | where: "type", include.type %}{% endif %}
+{% if include.selected %}{% assign pubs = pubs | where: "selected", true %}{% endif %}
+{% assign pubs = pubs | sort: "year" | reverse %}
+<ol class="pub-list">
+  {% for pub in pubs %}
+  <li class="pub">
+    <span class="pub__title">{{ pub.title }}</span>
+    <span class="pub__authors">
+      {%- for author in pub.authors -%}
+        {%- if author == site.author.name -%}<strong>{{ author }}</strong>{%- else -%}{{ author }}{%- endif -%}
+        {%- unless forloop.last -%}{%- if forloop.rindex == 2 -%}, and {% else %}, {% endif -%}{%- endunless -%}
+      {%- endfor -%}
+    </span>
+    <span class="pub__venue"><em>{{ pub.venue }}</em>, {{ pub.year }}</span>
+    {% if pub.status or pub.links %}
+    <span class="pub__meta">
+      {% if pub.status %}<span class="pub__badge">{{ pub.status }}</span>{% endif %}
+      {% for link in pub.links %}<a class="pub__link" href="{{ link.url }}">{{ link.name }}</a>{% endfor %}
+    </span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>

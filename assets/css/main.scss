@@ -39,17 +39,324 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
-// auto dark mode
-@media (prefers-color-scheme: dark) {
-  html {
-    filter: invert(1) hue-rotate(180deg);
-    background: #fff;
-  }
+/* ==========================================================================
+   THEME COLORS
+   Light by default; dark when the toggle (or "auto" + system setting) sets
+   html[data-theme="dark"]. Without JS, the system setting is used.
+   ========================================================================== */
 
-  img, picture, video, .author__avatar img {
-    filter: invert(1) hue-rotate(180deg);
+@mixin dark-theme {
+  --bg: #16181b;
+  --surface: #1f2226;
+  --text: #c9ced3;
+  --heading: #e6e9ec;
+  --muted: #8d959c;
+  --border: #2a2e33;
+  --border-strong: #3a4046;
+  --rule: #5a6168;
+  --link: #6ec6df;
+  --link-hover: #a3dcec;
+  --code-bg: #23272b;
+  --badge-bg: #1f3a44;
+  --badge-text: #9fd7e8;
+  color-scheme: dark;
+}
+
+:root {
+  --bg: #fff;
+  --surface: #f2f3f3;
+  --text: #494e52;
+  --heading: #313538;
+  --muted: #7a8288;
+  --border: #f2f3f3;
+  --border-strong: #bdc1c4;
+  --rule: #666;
+  --link: #52adc8;
+  --link-hover: #3e8296;
+  --code-bg: #fafafa;
+  --badge-bg: #eaf5f9;
+  --badge-text: #2f7d95;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    @include dark-theme;
   }
 }
+
+html,
+body {
+  background-color: var(--bg);
+}
+
+body {
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+
+  &:hover {
+    color: var(--link-hover);
+  }
+}
+
+.page__title,
+.page__content h2,
+.page__content h3,
+.author__name {
+  color: var(--heading);
+}
+
+p > code,
+a > code,
+li > code,
+td > code {
+  background: var(--code-bg);
+  border-color: var(--border);
+}
+
+.masthead {
+  background-color: var(--bg);
+  border-bottom-color: var(--border);
+}
+
+.greedy-nav {
+  background: var(--bg);
+
+  a {
+    color: var(--muted);
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  .visible-links a:before {
+    background: var(--border-strong);
+  }
+
+  button {
+    background-color: transparent;
+  }
+
+  .hidden-links {
+    background: var(--bg);
+    border-color: var(--border);
+
+    &:before {
+      border-color: var(--border) transparent;
+    }
+
+    &:after {
+      border-color: var(--bg) transparent;
+    }
+
+    li {
+      border-bottom-color: var(--border);
+    }
+
+    a:hover {
+      color: var(--text);
+      background: var(--surface);
+    }
+  }
+}
+
+.navicon,
+.navicon:before,
+.navicon:after {
+  background: var(--muted);
+}
+
+.close .navicon {
+  background: transparent;
+}
+
+.author__urls {
+  background: var(--bg);
+  border-color: var(--border);
+
+  &:before {
+    border-color: var(--border) transparent;
+  }
+
+  &:after {
+    border-color: var(--bg) transparent;
+  }
+}
+
+.social-icons .fa,
+.social-icons .fas {
+  color: var(--text);
+}
+
+.btn--inverse {
+  color: var(--muted) !important;
+  border-color: var(--border-strong) !important;
+  background-color: var(--bg);
+}
+
+.page__footer {
+  color: var(--muted);
+  background-color: var(--surface);
+  border-top-color: var(--border);
+
+  .fas,
+  .fab {
+    color: var(--muted);
+  }
+}
+
+.page__footer-copyright {
+  text-align: center;
+  font-size: 0.85em;
+}
+
+/* ==========================================================================
+   THEME TOGGLE
+   ========================================================================== */
+
+.masthead__menu {
+  display: flex;
+  align-items: center;
+
+  .greedy-nav {
+    flex: 1 1 auto;
+  }
+}
+
+.theme-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-left: 0.75rem;
+  padding: 0.35em 0.75em;
+  font-size: $type-size-6;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: $global-transition;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+}
+
+.no-js .theme-toggle {
+  display: none;
+}
+
+.theme-toggle__icon {
+  display: none;
+}
+
+html:not([data-theme-pref]) .theme-toggle__icon--auto,
+html[data-theme-pref="auto"] .theme-toggle__icon--auto,
+html[data-theme-pref="light"] .theme-toggle__icon--light,
+html[data-theme-pref="dark"] .theme-toggle__icon--dark {
+  display: inline-block;
+}
+
+@media (max-width: $small) {
+  .theme-toggle__label {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   PUBLICATIONS, RESEARCH, CV
+   ========================================================================== */
+
+.page__content .pub-list {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.page__content .pub {
+  margin-bottom: 1.25em;
+}
+
+.pub__title,
+.pub__authors,
+.pub__venue {
+  display: block;
+}
+
+.pub__title {
+  font-weight: 600;
+  color: var(--heading);
+}
+
+.pub__venue {
+  color: var(--muted);
+}
+
+.pub__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.35em;
+  font-size: $type-size-6;
+}
+
+.pub__badge,
+.pub__link {
+  padding: 0.1em 0.65em;
+  border-radius: 999px;
+}
+
+.pub__badge {
+  color: var(--badge-text);
+  background: var(--badge-bg);
+}
+
+.page__content .pub__link {
+  border: 1px solid var(--link);
+  text-decoration: none;
+}
+
+.more-link {
+  font-size: 0.9em;
+}
+
+.project__meta {
+  margin-top: -0.5em;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.cv-entry {
+  margin-bottom: 0.9em;
+}
+
+.cv-entry__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 1em;
+}
+
+.cv-entry__date {
+  color: var(--muted);
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   AVATAR AND SECTION RULES
+   ========================================================================== */
 
 .author__avatar {
   text-align: center !important;
@@ -72,12 +379,12 @@
 
 // separation line visible
 .page__content h2 {
-  border-bottom: 2px solid #666 !important; 
-  padding-bottom: 0.2em !important;
+  border-bottom: 2px solid var(--rule);
+  padding-bottom: 0.2em;
 }
 
 hr {
-  border: 0 !important;
-  border-bottom: 1px solid #666 !important;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
 }
 

@@ -1,0 +1,31 @@
+# Publications shown on the home, Publications and CV pages.
+#   type:    conference | journal
+#   status:  optional, e.g. "Under Review"
+#   links:   optional list of { name, url }, e.g. paper, PDF, code, slides
+#   selected: true to show on the home page
+
+- title: "ENABOL: Enabling Stable On-Chip Learning via Adaptive Lipschitz Budgeting"
+  authors: ["M. B. Valentín", "Houxuan Guo", "R. Forelli", "E. Gindlesperger", "S. Ogrenci"]
+  venue: "Design, Automation and Test in Europe (DATE)"
+  year: 2027
+  type: conference
+  status: "Under Review"
+  selected: true
+
+- title: "NetSuRF: A Resource-Aware Fault-Tolerant Design Flow for Machine Learning on Edge Devices"
+  authors: ["M. B. Valentín", "Houxuan Guo", "X. He", "S. Ogrenci"]
+  venue: "IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD)"
+  year: 2026
+  type: journal
+  status: "Under Review"
+  selected: true
+
+- title: "Toward Reconfigurable In-Pixel Computing: A Fault-Tolerant Design Flow for Machine Learning Accelerators"
+  authors: ["Houxuan Guo", "M. B. Valentín", "X. He", "S. Ogrenci"]
+  venue: "IEEE 33rd Annual International Symposium on Field-Programmable Custom Computing Machines (FCCM)"
+  year: 2025
+  type: conference
+  selected: true
+  links:
+    - name: "IEEE Xplore"
+      url: "https://doi.org/10.1109/FCCM62733.2025.00014"

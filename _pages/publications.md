@@ -1,16 +1,14 @@
 ---
-layout: archive
-title: "Publications"
 permalink: /publications/
+title: "Publications"
+excerpt: "Publications by Houxuan Guo."
 author_profile: true
 ---
 
-{% if author.googlescholar %}
-  You can also find my articles on <u><a href="{{author.googlescholar}}">my Google Scholar profile</a>.</u>
-{% endif %}
+## Conference Papers
 
-{% include base_path %}
+{% include publication-list.html type="conference" %}
 
-{% for post in site.publications reversed %}
-  {% include archive-single.html %}
-{% endfor %}
+## Journal Articles
+
+{% include publication-list.html type="journal" %}
