@@ -96,13 +96,19 @@
     });
   });
 
-  /* Easter egg: click the avatar 5 times to inject bit-flips, then watch
-     triple modular redundancy (TMR) correct them. ------------------------- */
+  /* Easter egg: pressing the avatar injects bit-flips into the page text.
+     Clicking faster, or holding the avatar down, flips more and more of the
+     page. Once it is released, a triple modular redundancy (TMR) scrubber
+     votes the faults out evenly across the page, quickly at first and then
+     settling gently, so every part of the screen recovers at the same pace.
+     ----------------------------------------------------------------------- */
 
   var avatar = document.querySelector('.sidebar__avatar');
-  var clicks = 0;
-  var clickTimer;
-  var injecting = false;
+  var burst = null; // state while any fault is active
+  var IDLE_MS = 350; // pause after the last press before recovery starts
+  var TICK_MS = 40;
+  var HOLD_TICK_MS = 100;
+  var hold = null;   // { start, timer } while the avatar is held down
 
   function textNodes() {
     var nodes = [];
@@ -118,91 +124,178 @@
     return nodes;
   }
 
-  // Flip one random bit of an alphanumeric character, keeping it printable.
-  function flip(ch) {
+  // Flip random bits of a character, keeping the result printable.
+  function flip(ch, bits) {
     var code = ch.charCodeAt(0);
     for (var tries = 0; tries < 8; tries++) {
-      var flipped = code ^ (1 << Math.floor(Math.random() * 7));
-      if (flipped > 32 && flipped < 127) return String.fromCharCode(flipped);
+      var flipped = code;
+      for (var b = 0; b < (bits || 1); b++) flipped ^= 1 << Math.floor(Math.random() * 7);
+      if (flipped > 32 && flipped < 127 && flipped !== code) return String.fromCharCode(flipped);
     }
     return '#';
   }
 
-  function injectFaults() {
-    injecting = true;
+  function bitsFor(heat) {
+    return heat > 8 ? 3 : heat > 4 ? 2 : 1;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function startBurst() {
     var nodes = textNodes();
-    var originals = nodes.map(function (node) { return node.nodeValue; });
-    var sites = [];
+    var sites = []; // every alphanumeric character, in reading order
     nodes.forEach(function (node, n) {
       var value = node.nodeValue;
       for (var i = 0; i < value.length; i++) {
         if (/[A-Za-z0-9]/.test(value[i])) sites.push([n, i]);
       }
     });
-
-    var count = Math.min(sites.length, 18 + Math.floor(Math.random() * 14));
-    var faults = [];
-    for (var k = 0; k < count; k++) {
-      faults.push(sites.splice(Math.floor(Math.random() * sites.length), 1)[0]);
-    }
-
-    function render(active) {
-      var values = originals.slice();
-      active.forEach(function (site) {
-        var v = values[site[0]];
-        values[site[0]] = v.slice(0, site[1]) + flip(v[site[1]]) + v.slice(site[1] + 1);
-      });
-      nodes.forEach(function (node, n) {
-        if (node.nodeValue !== values[n]) node.nodeValue = values[n];
-      });
-    }
-
-    function finish() {
-      nodes.forEach(function (node, n) { node.nodeValue = originals[n]; });
-      root.classList.remove('is-faulty');
-      injecting = false;
-      toast('TMR corrected ' + count + ' bit-flips ✓');
-    }
-
-    root.classList.add('is-faulty');
-    toast('⚡ Injecting ' + count + ' single-event upsets…');
-
-    if (reduceMotion) {
-      render(faults);
-      setTimeout(finish, 1200);
-      return;
-    }
-
-    // Faults appear, flicker, then get voted out one by one.
-    var tick = 0;
-    var timer = setInterval(function () {
-      tick++;
-      var visible = tick < 14 ? faults.slice(0, Math.ceil(faults.length * tick / 6)) : faults.slice(0, faults.length - (tick - 14) * 2);
-      render(visible);
-      if (tick >= 14 && visible.length === 0) {
-        clearInterval(timer);
-        finish();
-      }
-    }, 70);
+    return {
+      nodes: nodes,
+      originals: nodes.map(function (node) { return node.nodeValue; }),
+      sites: sites,
+      faults: {},      // site index -> { ch, rank }
+      active: 0,
+      corrected: 0,
+      heat: 0,
+      lastClick: 0,
+      recovery: null,  // { start, duration } while the scrubber runs
+      timer: null
+    };
   }
 
-  if (avatar) {
-    avatar.addEventListener('click', function () {
-      if (injecting) return;
-      avatar.classList.remove('is-hit');
-      void avatar.offsetWidth;
-      avatar.classList.add('is-hit');
-      clicks++;
-      clearTimeout(clickTimer);
-      clickTimer = setTimeout(function () { clicks = 0; }, 1500);
-      if (clicks >= 5) {
-        clicks = 0;
-        injectFaults();
-      }
+  function render() {
+    var values = burst.originals.slice();
+    var chars = {};
+    Object.keys(burst.faults).forEach(function (s) {
+      var site = burst.sites[s];
+      (chars[site[0]] = chars[site[0]] || []).push([site[1], burst.faults[s].ch]);
+    });
+    Object.keys(chars).forEach(function (n) {
+      var v = values[n].split('');
+      chars[n].forEach(function (c) { v[c[0]] = c[1]; });
+      values[n] = v.join('');
+    });
+    burst.nodes.forEach(function (node, n) {
+      if (node.nodeValue !== values[n]) node.nodeValue = values[n];
     });
   }
 
+  function startRecovery(now) {
+    // Each fault gets a random place in the correction order, so the page
+    // clears evenly wherever the reader happens to be looking.
+    var total = burst.sites.length;
+    Object.keys(burst.faults).forEach(function (s) {
+      burst.faults[s].rank = Math.random();
+    });
+    // Bigger messes take longer to scrub: about 0.7 s after a single click,
+    // up to 2.6 s when the whole page is garbled.
+    var damage = Math.min(1, 1.5 * Math.sqrt(burst.active / total));
+    burst.recovery = { start: now, duration: 600 + 2000 * damage };
+  }
+
+  function tick() {
+    var now = Date.now();
+    var heat = currentHeat(now);
+
+    if (!burst.recovery && now - burst.lastClick >= IDLE_MS) startRecovery(now);
+
+    var progress = burst.recovery ? easeOutCubic(Math.min(1, (now - burst.recovery.start) / burst.recovery.duration)) : -1;
+    var flicker = burst.recovery ? 0.15 : Math.min(0.8, 0.25 + heat * 0.05);
+    var bits = bitsFor(heat);
+
+    Object.keys(burst.faults).forEach(function (s) {
+      var fault = burst.faults[s];
+      if (progress >= 1 || (progress >= 0 && fault.rank <= progress)) {
+        delete burst.faults[s];
+        burst.active--;
+        burst.corrected++;
+      } else if (!reduceMotion && Math.random() < flicker) {
+        var site = burst.sites[s];
+        fault.ch = flip(burst.originals[site[0]][site[1]], bits);
+      }
+    });
+    render();
+
+    if (burst.active === 0) {
+      clearInterval(burst.timer);
+      burst.nodes.forEach(function (node, n) { node.nodeValue = burst.originals[n]; });
+      toast('Corrected ' + burst.corrected + ' bit-flip' + (burst.corrected === 1 ? '' : 's') + ' ✓');
+      burst = null;
+    }
+  }
+
+  // Each click adds 1 heat; heat cools off with a time constant of 1.2 s.
+  function currentHeat(now) {
+    return burst.heat * Math.exp(-(now - burst.lastClick) / 1200);
+  }
+
+  function addFaults(count, heat) {
+    var now = Date.now();
+    var total = burst.sites.length;
+    var bits = bitsFor(heat);
+    burst.heat = heat;
+    burst.lastClick = now;
+    burst.recovery = null; // new faults interrupt the scrubber
+
+    for (var k = 0, tries = 0; k < count && tries < count * 3 && burst.active < total; tries++) {
+      var s = Math.floor(Math.random() * total);
+      if (burst.faults[s]) continue;
+      var site = burst.sites[s];
+      burst.faults[s] = { ch: flip(burst.originals[site[0]][site[1]], bits), rank: 0 };
+      burst.active++;
+      k++;
+    }
+
+    render();
+    if (!burst.timer) burst.timer = setInterval(tick, TICK_MS);
+  }
+
+  // A press flips a couple of characters; fast repeated presses flip a
+  // growing share of the page, up to all of it.
+  function press() {
+    if (!burst) burst = startBurst();
+    var heat = currentHeat(Date.now()) + 1;
+    var share = Math.min(0.6, 0.001 * Math.pow(heat - 1, 2.5));
+    addFaults(2 + Math.round(burst.sites.length * share), heat);
+  }
+
+  // While held, the flip rate ramps up with time held: barely anything in
+  // the first second, about a third of the page by 3 s, nearly all by 6 s.
+  function holdTick() {
+    if (!burst) burst = startBurst();
+    var held = (Date.now() - hold.start) / 1000;
+    var share = Math.min(0.2, 0.004 * held * held);
+    var count = Math.round(burst.sites.length * share) + (held > 0.4 ? 1 : 0);
+    addFaults(count, Math.max(currentHeat(Date.now()), 1 + 2 * held));
+  }
+
+  function release() {
+    if (!hold) return;
+    clearInterval(hold.timer);
+    hold = null;
+    avatar.classList.remove('is-pressed');
+  }
+
+  if (avatar) {
+    avatar.addEventListener('pointerdown', function (event) {
+      if (event.button !== 0) return;
+      event.preventDefault();
+      try { avatar.setPointerCapture(event.pointerId); } catch (e) {}
+      release();
+      avatar.classList.add('is-pressed');
+      press();
+      hold = { start: Date.now(), timer: setInterval(holdTick, HOLD_TICK_MS) };
+    });
+    ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(function (type) {
+      avatar.addEventListener(type, release);
+    });
+    avatar.addEventListener('contextmenu', function (event) { event.preventDefault(); });
+  }
+
   if (window.console && console.log) {
-    console.log('%c⚡ Fault injection enabled. Click the avatar 5 times.', 'color:#3c97b3;font-weight:bold');
+    console.log('%c⚡ Fault injection enabled. Try clicking, or holding, the avatar.', 'color:#26758e;font-weight:bold');
   }
 })();

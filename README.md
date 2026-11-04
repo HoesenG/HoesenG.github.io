@@ -47,4 +47,4 @@ bundle exec jekyll serve
 # then open http://localhost:4000
 ```
 
-Hint: try clicking the avatar five times.
+Hint: try clicking the avatar, or press and hold it.

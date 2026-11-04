@@ -1,6 +1,6 @@
 {% assign author = site.author %}
 <aside class="sidebar" itemscope itemtype="https://schema.org/Person">
-  <img class="sidebar__avatar" src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" width="120" height="120" itemprop="image">
+  <img class="sidebar__avatar" src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" width="120" height="120" draggable="false" itemprop="image">
   <div class="sidebar__text">
     <p class="sidebar__name" itemprop="name">{{ author.name }}</p>
     <p class="sidebar__bio" itemprop="description">{{ author.bio }}</p>

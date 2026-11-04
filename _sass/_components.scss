@@ -217,17 +217,12 @@
   }
 }
 
-.is-faulty .content,
-.is-faulty .sidebar__text {
-  text-shadow: 1px 0 rgba(255, 0, 80, 0.45), -1px 0 rgba(0, 200, 255, 0.45);
-}
+.sidebar__avatar {
+  transition: transform 0.12s ease-out;
 
-.sidebar__avatar.is-hit {
-  animation: avatar-hit 0.25s;
-}
-
-@keyframes avatar-hit {
-  50% { transform: scale(0.94); }
+  &.is-pressed {
+    transform: scale(0.93);
+  }
 }
 
 .glitch-404 {
