@@ -1,0 +1,244 @@
+/* Theme toggle: X = auto (follows the system), 1 = light, 0 = dark
+   ========================================================================== */
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-left: auto;
+  padding: 0.3em 0.75em 0.3em 0.35em;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.75em;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: color $transition, border-color $transition;
+
+  &:hover {
+    color: var(--text);
+    border-color: var(--muted);
+  }
+
+  .no-js & {
+    display: none;
+  }
+}
+
+.theme-toggle__signal {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7em;
+  height: 1.7em;
+  color: var(--bg);
+  font-family: $font-mono;
+  font-weight: 700;
+  background: var(--muted);
+  border-radius: 50%;
+
+  &::before { content: "X"; }
+
+  html[data-theme-pref="light"] & {
+    background: #e0a526;
+    &::before { content: "1"; }
+  }
+
+  html[data-theme-pref="dark"] & {
+    background: var(--link);
+    &::before { content: "0"; }
+  }
+}
+
+.theme-toggle__label {
+  &::before { content: "Auto"; }
+  html[data-theme-pref="light"] &::before { content: "Light"; }
+  html[data-theme-pref="dark"] &::before { content: "Dark"; }
+
+  @media (max-width: $small) {
+    display: none;
+  }
+}
+
+/* Publications
+   ========================================================================== */
+
+.pubs {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.pub {
+  margin-bottom: 1.4em;
+}
+
+.pub__title,
+.pub__authors,
+.pub__venue {
+  display: block;
+}
+
+.pub__title {
+  color: var(--heading);
+  font-weight: 600;
+}
+
+.pub__venue {
+  color: var(--muted);
+}
+
+.pub__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.4em;
+  font-size: 0.75em;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.15em 0.7em;
+  font: inherit;
+  line-height: 1.5;
+  border-radius: 999px;
+  border: 1px solid transparent;
+}
+
+.tag--venue {
+  color: var(--bg);
+  font-family: $font-mono;
+  font-weight: 700;
+  background: var(--muted);
+}
+
+.tag--status {
+  color: var(--tag-text);
+  background: var(--tag-bg);
+}
+
+.tag--link {
+  color: var(--link);
+  background: transparent;
+  border-color: var(--link);
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--bg);
+    background: var(--link);
+  }
+}
+
+.more-link {
+  font-size: 0.9em;
+}
+
+/* Research, CV
+   ========================================================================== */
+
+.project__meta {
+  margin-top: -0.4em;
+  color: var(--muted);
+  font-size: 0.85em;
+}
+
+.timeline {
+  margin: 0 0 1.5em 0.35em;
+  border-left: 2px solid var(--border-strong);
+}
+
+.timeline__item {
+  position: relative;
+  padding: 0 0 1em 1.4em;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 0.45em;
+    width: 12px;
+    height: 12px;
+    background: var(--bg);
+    border: 2px solid var(--link);
+    border-radius: 50%;
+  }
+
+  &:last-child {
+    padding-bottom: 0.25em;
+  }
+
+  > ul {
+    margin: 0.75em 0 0;
+  }
+}
+
+.timeline__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0 1em;
+  color: var(--heading);
+}
+
+.timeline__date {
+  color: var(--muted);
+  font-size: 0.9em;
+  white-space: nowrap;
+}
+
+/* Toast and the bit-flip easter egg
+   ========================================================================== */
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 1.5rem;
+  z-index: 50;
+  padding: 0.6em 1.1em;
+  color: var(--bg);
+  font-family: $font-mono;
+  font-size: 0.8em;
+  background: var(--heading);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translate(-50%, 0.75rem);
+  transition: opacity 0.25s, transform 0.25s;
+  pointer-events: none;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.is-faulty .content,
+.is-faulty .sidebar__text {
+  text-shadow: 1px 0 rgba(255, 0, 80, 0.45), -1px 0 rgba(0, 200, 255, 0.45);
+}
+
+.sidebar__avatar.is-hit {
+  animation: avatar-hit 0.25s;
+}
+
+@keyframes avatar-hit {
+  50% { transform: scale(0.94); }
+}
+
+.glitch-404 {
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

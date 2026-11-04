@@ -1,25 +1,16 @@
-{% include base_path %}
-
-{% if page.author_profile or layout.author_profile or page.sidebar %}
-  <div class="sidebar sticky">
-  {% if page.author_profile or layout.author_profile %}{% include author-profile.html %}{% endif %}
-  {% if page.sidebar %}
-    {% for s in page.sidebar %}
-      {% if s.image %}
-        <img src=
-        {% if s.image contains "://" %}
-          "{{ s.image }}"
-        {% else %}
-          "{{ s.image | prepend: "/images/" | prepend: base_path }}"
-        {% endif %}
-        alt="{% if s.image_alt %}{{ s.image_alt }}{% endif %}">
-      {% endif %}
-      {% if s.title %}<h3>{{ s.title }}</h3>{% endif %}
-      {% if s.text %}{{ s.text | markdownify }}{% endif %}
-    {% endfor %}
-    {% if page.sidebar.nav %}
-      {% include nav_list nav=page.sidebar.nav %}
-    {% endif %}
-  {% endif %}
+{% assign author = site.author %}
+<aside class="sidebar" itemscope itemtype="https://schema.org/Person">
+  <img class="sidebar__avatar" src="{{ author.avatar | relative_url }}" alt="{{ author.name }}" width="120" height="120" itemprop="image">
+  <div class="sidebar__text">
+    <p class="sidebar__name" itemprop="name">{{ author.name }}</p>
+    <p class="sidebar__bio" itemprop="description">{{ author.bio }}</p>
+    <ul class="sidebar__links">
+      {% if author.location %}<li>{% include icon.html name="location" %}<span itemprop="homeLocation">{{ author.location }}</span></li>{% endif %}
+      {% if author.email %}<li><a href="mailto:{{ author.email }}" itemprop="email">{% include icon.html name="email" %}Email</a></li>{% endif %}
+      {% if author.googlescholar %}<li><a href="{{ author.googlescholar }}" rel="me">{% include icon.html name="scholar" %}Google Scholar</a></li>{% endif %}
+      {% if author.github %}<li><a href="https://github.com/{{ author.github }}" rel="me">{% include icon.html name="github" %}GitHub</a></li>{% endif %}
+      {% if author.linkedin %}<li><a href="{{ author.linkedin }}" rel="me">{% include icon.html name="linkedin" %}LinkedIn</a></li>{% endif %}
+      {% if author.orcid %}<li><a href="{{ author.orcid }}" rel="me">{% include icon.html name="orcid" %}ORCID</a></li>{% endif %}
+    </ul>
   </div>
-{% endif %}
+</aside>

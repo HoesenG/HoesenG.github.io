@@ -1,0 +1,55 @@
+// Color tokens. Light by default; dark when html[data-theme="dark"] is set by
+// the theme toggle (or by "auto" plus the system setting). Without JS the
+// system setting decides.
+
+$font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$small: 600px;
+$medium: 768px;
+$large: 1024px;
+$x-large: 1280px;
+$transition: 0.2s ease-in-out;
+
+@mixin dark-theme {
+  --bg: #16181b;
+  --surface: #1f2226;
+  --text: #c9ced3;
+  --heading: #e6e9ec;
+  --muted: #8d959c;
+  --border: #2a2e33;
+  --border-strong: #3a4046;
+  --rule: #5a6168;
+  --link: #6ec6df;
+  --link-hover: #a3dcec;
+  --code-bg: #23272b;
+  --tag-bg: #1f3a44;
+  --tag-text: #9fd7e8;
+  color-scheme: dark;
+}
+
+:root {
+  --bg: #fff;
+  --surface: #f2f3f3;
+  --text: #494e52;
+  --heading: #313538;
+  --muted: #7a8288;
+  --border: #f2f3f3;
+  --border-strong: #bdc1c4;
+  --rule: #666;
+  --link: #3c97b3;
+  --link-hover: #2c6f84;
+  --code-bg: #fafafa;
+  --tag-bg: #eaf5f9;
+  --tag-text: #2f7d95;
+  color-scheme: light;
+}
+
+html[data-theme="dark"] {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme]) {
+    @include dark-theme;
+  }
+}
