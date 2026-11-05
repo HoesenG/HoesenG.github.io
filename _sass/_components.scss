@@ -89,6 +89,16 @@ html[data-theme-pref="dark"] .theme-toggle__icon--dark {
   }
 }
 
+/* Greeting above the home page heading
+   ========================================================================== */
+
+.greeting {
+  margin: 0 0 0.15em;
+  color: var(--muted);
+  font-size: 0.95em;
+  letter-spacing: 0.01em;
+}
+
 /* Publications
    ========================================================================== */
 

@@ -66,6 +66,15 @@
 
   applyTheme(getPref());
 
+  /* Greeting: "salut!" during the day, "bonsoir!" in the evening,
+     by the visitor's local time. ------------------------------------------ */
+
+  var greeting = document.querySelector('[data-greeting]');
+  if (greeting) {
+    var hour = new Date().getHours();
+    greeting.textContent = hour >= 5 && hour < 18 ? 'salut!' : 'bonsoir!';
+  }
+
   /* BibTeX copy ------------------------------------------------------------ */
 
   function copyText(text) {

@@ -1,6 +1,7 @@
 ---
 permalink: /
 heading: About me
+greeting: true
 description: Houxuan Guo, Ph.D. candidate in Computer Engineering at Northwestern University.
 redirect_from:
   - /about/
