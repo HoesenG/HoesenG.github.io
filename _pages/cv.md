@@ -48,3 +48,4 @@ redirect_from:
 * **Languages & Scripting:** Python (NumPy, SciPy), C/C++, SystemVerilog, Verilog, CUDA, MATLAB, Bash, Tcl, Git, Linux
 * **Hardware Architecture:** Edge AI Accelerators, FPGA (Vivado, Vitis), High-Level Synthesis (HLS), Fixed-Point Arithmetic, ASIC/SoC Co-Design, UVM, ESP SoC Platform
 * **EDA Tools:** Cadence (Genus, Innovus, Xcelium, Virtuoso), Synopsys (Design Compiler, VCS), Siemens Questa
+* **Languages:** English, Mandarin, French
