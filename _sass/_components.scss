@@ -1,56 +1,85 @@
-/* Theme toggle: X = auto (follows the system), 1 = light, 0 = dark
+/* Theme toggle: auto (follows the system), light, dark
    ========================================================================== */
 
 .theme-toggle {
+  // Modeled on the iOS switch: a filled capsule track with a round knob
+  // inset 3px on every side, so the knob is concentric with the track's
+  // left end. Whole-pixel sizes keep both curves crisp.
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
+  width: 76px;
+  height: 32px;
   margin-left: auto;
-  padding: 0.3em 0.75em 0.3em 0.35em;
+  padding: 3px;
   color: var(--muted);
   font: inherit;
-  font-size: 0.75em;
-  background: transparent;
-  border: 1px solid var(--border-strong);
-  border-radius: 999px;
+  font-size: 13px;
+  line-height: 1;
+  background: var(--track);
+  border: 0;
+  border-radius: 16px;
   cursor: pointer;
-  transition: color $transition, border-color $transition;
+  transition: color $transition, background-color $transition;
 
-  &:hover {
-    color: var(--text);
-    border-color: var(--muted);
+  @media (hover: hover) {
+    &:hover {
+      color: var(--heading);
+      background: var(--track-hover);
+    }
   }
 
   .no-js & {
     display: none;
   }
+
+  // Phones: icon only, a 30px knob in a 36px round track.
+  @media (max-width: $small) {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
 }
 
-.theme-toggle__signal {
-  display: inline-grid;
+.theme-toggle__knob {
+  display: grid;
   place-items: center;
-  width: 1.7em;
-  height: 1.7em;
-  color: var(--bg);
-  font-family: $font-mono;
-  font-weight: 700;
-  background: var(--muted);
+  flex: none;
+  width: 26px;
+  height: 26px;
+  color: var(--heading);
+  background: var(--knob);
   border-radius: 50%;
+  box-shadow: var(--knob-shadow);
+  transition: transform 0.15s ease-out;
 
-  &::before { content: "X"; }
-
-  html[data-theme-pref="light"] & {
-    background: #e0a526;
-    &::before { content: "1"; }
+  .theme-toggle:active & {
+    transform: scale(0.92);
   }
 
-  html[data-theme-pref="dark"] & {
-    background: var(--link);
-    &::before { content: "0"; }
+  @media (max-width: $small) {
+    width: 30px;
+    height: 30px;
   }
+}
+
+.theme-toggle__icon {
+  display: none;
+  width: 16px;
+  height: 16px;
+}
+
+html:not([data-theme-pref]) .theme-toggle__icon--auto,
+html[data-theme-pref="auto"] .theme-toggle__icon--auto,
+html[data-theme-pref="light"] .theme-toggle__icon--light,
+html[data-theme-pref="dark"] .theme-toggle__icon--dark {
+  display: block;
 }
 
 .theme-toggle__label {
+  flex: 1;
+  padding-left: 2px;
+  text-align: center;
+
   &::before { content: "Auto"; }
   html[data-theme-pref="light"] &::before { content: "Light"; }
   html[data-theme-pref="dark"] &::before { content: "Dark"; }
