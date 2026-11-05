@@ -9,6 +9,9 @@ $medium: 768px;
 $large: 1024px;
 $x-large: 1280px;
 $transition: 0.2s ease-in-out;
+$sidebar-width: 200px;
+$content-width: 770px;
+$column-gap: 4rem;
 
 @mixin dark-theme {
   --bg: #16181b;

@@ -21,6 +21,28 @@
   gap: 0.25rem 2rem;
   padding-top: 1.1rem;
   padding-bottom: 1.1rem;
+
+  // Wider screens: share the page's two-column grid, so the nav lines up
+  // with the content's left edge and the theme toggle with its right edge.
+  @media (min-width: $medium) {
+    display: grid;
+    grid-template-columns: $sidebar-width minmax(0, $content-width);
+    column-gap: $column-gap;
+
+    > * {
+      grid-row: 1;
+    }
+
+    .masthead__nav {
+      grid-column: 2;
+      justify-self: start;
+    }
+
+    .theme-toggle {
+      grid-column: 2;
+      justify-self: end;
+    }
+  }
 }
 
 .masthead__title {
@@ -84,8 +106,8 @@
 
   @media (min-width: $medium) {
     display: grid;
-    grid-template-columns: 200px minmax(0, 770px);
-    column-gap: 4rem;
+    grid-template-columns: $sidebar-width minmax(0, $content-width);
+    column-gap: $column-gap;
     align-items: start;
   }
 }
