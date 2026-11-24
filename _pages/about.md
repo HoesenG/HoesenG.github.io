@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I'm a Ph.D. candidate in Computer Engineering at Northwestern University, advised by Prof. Seda Ogrenci, and a visiting researcher at Fermi National Accelerator Laboratory (Fermilab). My research focuses on fault-tolerant hardware design, reconfigurable architectures, on-device learning, and hardware-algorithm co-design.
+I'm a Ph.D. candidate in Computer Engineering at Northwestern University. My research focuses on fault-tolerant hardware design, reconfigurable architectures, on-device learning, and hardware-algorithm co-design.
 
 I build resource-efficient, fault-resilient neural network accelerators and the compilation frameworks that target them. My work spans automated ML compilation toolchains, fixed-point on-device backpropagation, post-silicon ASIC bring-up, and hardware reliability for edge computing platforms.
 
