@@ -19,8 +19,6 @@ I build resource-efficient, fault-resilient neural network accelerators and the 
 * Reconfigurable architectures, FPGA, and high-level synthesis
 * ML compilers and hardware-algorithm co-design
 
-## Selected Publications
+## Publications
 
-{% include publication-list.html selected=true %}
-
-[All publications →]({{ '/publications/' | relative_url }}){: .more-link}
+{% include publication-list.html %}
